@@ -4,19 +4,36 @@
       v-model="visible"
       title="title"
       skin="skin -skin "
-      close-btn="4"
+      :area="['500px', '500px']"
       :is-out-anim="false"
       :anim="4"
-      :z-index="4"
       :move-end="handleEnd"
       :minStack="false"
+      :fixed="false"
       resize
     >
-    <!-- 弹窗内容放在此处 -->
-    <div>这是弹窗内容</div>
-    </layer-iframe>
-    <layer-iframe v-model="visible2" :area="['400px', '300px']" @end="handleEnd"
-      >这是2
+      <!-- 弹窗内容放在此处 -->
+      <div>这是弹窗内容</div>
+      <button type="" @click="visible2 = !visible2">打开关闭2</button>
+      <layer-iframe
+        title="title2"
+        fixed
+        v-model="visible2"
+        :area="['200px', '200px']"
+        @end="handleEnd"
+      >
+        <h2 id="axa">这是2</h2>
+        <button type="" @click="visible3 = !visible3">打开关闭3</button>
+        <layer-iframe
+          title="title3"
+          fixed
+          v-model="visible3"
+          :area="['200px', '200px']"
+          @end="handleEnd"
+        >
+          <h2 id="axa">这是3</h2>
+        </layer-iframe>
+      </layer-iframe>
     </layer-iframe>
     <button type="" @click="visible = !visible">打开关闭</button>
   </div>
@@ -29,6 +46,7 @@ export default {
     return {
       visible: false,
       visible2: false,
+      visible3: false,
     };
   },
   mounted() {},
@@ -44,7 +62,7 @@ export default {
 .aaa {
   background: red;
 }
-.app{
+.app {
   width: 300px;
   height: 300px;
   position: relative;

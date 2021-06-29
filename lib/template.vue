@@ -181,6 +181,7 @@ export default {
       } = this;
       this.layerIndex = layer.open({
         type: 1,
+        layerIframe:true,
         content: $(this.$refs.lpv),
         end: this.beforeDestroy,
         title,
