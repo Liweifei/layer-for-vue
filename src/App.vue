@@ -4,12 +4,11 @@
       v-model="visible"
       title="title"
       skin="skin -skin "
-      :area="['500px', '500px']"
+      :area="['500px', '10%']"
       :is-out-anim="false"
       :anim="4"
       :move-end="handleEnd"
       :minStack="false"
-      :fixed="false"
       resize
     >
       <!-- 弹窗内容放在此处 -->
@@ -17,12 +16,14 @@
       <button type="" @click="visible2 = !visible2">打开关闭2</button>
       <layer-iframe
         title="title2"
-        fixed
         v-model="visible2"
-        :area="['200px', '200px']"
+        :area="['200px', 'auto']"
+        resize
+        move-out
+        :max-height="560"
         @end="handleEnd"
       >
-        <h2 id="axa">这是2</h2>
+        <h2 id="axa" style="display:inline-block;float:right" class="xxxxxx">这是2</h2>
         <button type="" @click="visible3 = !visible3">打开关闭3</button>
         <layer-iframe
           title="title3"

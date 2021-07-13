@@ -1,6 +1,6 @@
 # 基于 vue 版本版的 layer,提供基于 vue 的核心弹窗功能
 
-## layer-for-vue(当前版本 V1.0.5)
+## layer-for-vue(当前版本 V1.0.6)
 
 ## layer 版本(3.5.1)
 
