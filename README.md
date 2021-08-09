@@ -1,6 +1,6 @@
 # 基于 vue 版本版的 layer,提供基于 vue 的核心弹窗功能
 
-## layer-for-vue(当前版本 V1.0.6)
+## layer-for-vue(当前版本 V1.0.7)
 
 ## layer 版本(3.5.1)
 
@@ -61,7 +61,7 @@ Vue2.x
 | max-height  | Number               | 最大高度；请注意：只有当 area: 'auto'时，maxWidth 的设定才有效。                                                                                                                                                                                                                                           | 560                      | FALSE    |
 | z-index     | Number               | 层叠顺序;一般用于解决和其它组件的层叠冲突                                                                                                                                                                                                                                                                  | 19891014（贤心生日 0.0） | FALSE    |
 | move       | String/DOM/Boolean   | 触发拖动的元素;默认是触发标题区域拖拽。如果你想单独定义，指向元素的选择器或者 DOM 即可。如 move: '.mine-move'。你还可以配置设定 move: false 来禁止拖拽                                                                                                                                                     | .layui-layer-title       | FALSE    |
-| move-out    | Boolean              | 是否允许拖拽到窗口外                                                                                                                                                                                                                                                                                       | FALSE                    | FALSE    |
+| move-out    | Boolean              | 是否允许拖拽到窗口(为TRUE时优化了弹窗可拖到视窗外)外                                                                                                                                                                                                                                                                                       | TRUE                    | FALSE    |
 | move-end    | Function             | 拖动完毕后的回调方法；默认不会触发 moveEnd，如果你需要，设定 moveEnd: function(layero){}即可。其中 layero 为当前层的 DOM 对象                                                                                                                                                                              | null                     | FALSE    |
 | success    | Function             | 层弹出后的成功回调方法；success 会携带两个参数，分别是当前层 DOM 当前层索引如 success: function(layero, index){}                                                                                                                                                                                           | null                     | FALSE    |
 | cancel     | Function             | 右上角关闭按钮触发的回调;该回调携带两个参数，分别为：当前层索引参数（index）、当前层的 DOM 对象（layero），默认会自动触发关闭。如果不想关闭，return false 即可                                                                                                                                             | null                     | FALSE    |

@@ -98,7 +98,7 @@ export default {
     },
     moveOut: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     moveEnd: {
       type: Function,
@@ -142,6 +142,11 @@ export default {
       },
       immediate: true,
     },
+    title:{
+      handler(val){
+        this.layerIndex!=null &&  layer.title(val, this.layerIndex) 
+      }
+    }
   },
   data() {
     return {

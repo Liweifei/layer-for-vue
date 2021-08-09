@@ -2,7 +2,7 @@
   <div class="app">
     <layer-iframe
       v-model="visible"
-      title="title"
+      :title="title"
       skin="skin -skin "
       :area="['500px', '10%']"
       :is-out-anim="false"
@@ -23,7 +23,7 @@
         :max-height="560"
         @end="handleEnd"
       >
-        <h2 id="axa" style="display:inline-block;float:right" class="xxxxxx">这是2</h2>
+        <h2 id="axa" style="display: inline-block; float: right" class="xxxxxx">这是2</h2>
         <button type="" @click="visible3 = !visible3">打开关闭3</button>
         <layer-iframe
           title="title3"
@@ -36,7 +36,7 @@
         </layer-iframe>
       </layer-iframe>
     </layer-iframe>
-    <button type="" @click="visible = !visible">打开关闭</button>
+    <button type="" @click="openlayer">打开关闭</button>
   </div>
 </template>
 
@@ -48,12 +48,19 @@ export default {
       visible: false,
       visible2: false,
       visible3: false,
+      title:"title"
     };
   },
   mounted() {},
   methods: {
     handleEnd() {
       console.log("end");
+    },
+    openlayer() {
+      this.visible = true;
+      setTimeout(()=>{
+        this.title="false";
+      },1000)
     },
   },
 };

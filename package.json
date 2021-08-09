@@ -1,7 +1,7 @@
 {
   "name": "layer-for-vue",
   "description": "基于 vue 版本版的 layer,提供基于 vue 的核心弹窗功能",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Liweifei <1195669615@qq.com>",
   "license": "MIT",
   "private": false,
