@@ -5,6 +5,9 @@
 </template>
 
 <script>
+// 阉割的配置属性
+// isOutAnim: false,
+// resize:false,
 export default {
   name: "layer-iframe",
   props: {
@@ -16,14 +19,18 @@ export default {
       type: String | Array | Boolean,
       default: "信息",
     },
+    releativeNode: {
+      type: String,
+      default: "",
+    },
     skin: {
       type: String,
       default: "",
     },
     area: {
       type: String | Array,
-      default: ()=>{
-        return ["1000px","100%"]
+      default: () => {
+        return ["1000px", "100%"];
       },
     },
     offset: {
@@ -36,13 +43,13 @@ export default {
     },
     shade: {
       type: String | Boolean | Array,
-      default: ()=>{
-        return [0.3, '#000'];
+      default: () => {
+        return [0.3, "#000"];
       },
     },
     shadeClose: {
       type: Boolean,
-      default: true, //change
+      default: false, //change
     },
     maxmin: {
       type: Boolean,
@@ -60,18 +67,19 @@ export default {
       type: Number,
       default: 0,
     },
-    isOutAnim: {
-      type: Boolean,
-      default: true,
-    },
+    // isOutAnim: {
+    //   type: Boolean,
+    //   default: false,
+    //   readon
+    // },
     fixed: {
       type: Boolean,
-      default: true,//change
+      default: false, //change
     },
-    resize: {
-      type: Boolean,
-      default: false,//change
-    },
+    // resize: {
+    //   type: Boolean,
+    //   default: false, //change
+    // },
     resizing: {
       type: Function,
       default: null,
@@ -142,11 +150,11 @@ export default {
       },
       immediate: true,
     },
-    title:{
-      handler(val){
-        this.layerIndex!=null &&  layer.title(val, this.layerIndex) 
-      }
-    }
+    title: {
+      handler(val) {
+        this.layerIndex != null && layer.title(val, this.layerIndex);
+      },
+    },
   },
   data() {
     return {
@@ -157,6 +165,7 @@ export default {
     openlayer() {
       const {
         title,
+        releativeNode,
         skin,
         area,
         offset,
@@ -167,9 +176,9 @@ export default {
         time,
         id,
         anim,
-        isOutAnim,
+        // isOutAnim,
         fixed,
-        resize,
+        // resize,
         resizing,
         scrollbar,
         maxWidth,
@@ -186,7 +195,8 @@ export default {
       } = this;
       this.layerIndex = layer.open({
         type: 1,
-        layerIframe:true,
+        layerIframe: true,
+        releativeNode, //lwf 弹窗浮动基于哪个dom（此处为id）
         content: $(this.$refs.lpv),
         end: this.beforeDestroy,
         title,
@@ -200,9 +210,9 @@ export default {
         time,
         id,
         anim,
-        isOutAnim,
+        isOutAnim: false,
         fixed,
-        resize,
+        resize:false,
         resizing,
         scrollbar,
         maxWidth,
@@ -219,7 +229,9 @@ export default {
       });
     },
     closeLayer() {
-      layer.close(this.layerIndex);
+      // layer.close(this.layerIndex);
+      // console.log(this.$children);
+      layer.closeChild(this.layerIndex);
     },
     beforeDestroy() {
       this.$emit("input", false);
@@ -228,3 +240,19 @@ export default {
   },
 };
 </script>
+<style scoped>
+.layer-iframe {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* .layer-iframe .layui-layer-content{
+  height: 100% !important;
+} */
+/* .layui-layer .layer-iframe{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+} */
+</style>

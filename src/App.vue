@@ -1,41 +1,42 @@
 <template>
-  <div class="app">
-    <layer-iframe
-      v-model="visible"
-      :title="title"
-      skin="skin -skin "
-      :area="['500px', '10%']"
-      :is-out-anim="false"
-      :anim="4"
-      :move-end="handleEnd"
-      :minStack="false"
-      resize
-    >
-      <!-- 弹窗内容放在此处 -->
-      <div>这是弹窗内容</div>
-      <button type="" @click="visible2 = !visible2">打开关闭2</button>
+  <div class="app" id="abc">
+    <div id="abs">
       <layer-iframe
-        title="title2"
-        v-model="visible2"
-        :area="['200px', 'auto']"
-        resize
-        move-out
-        :max-height="560"
+        v-model="visible"
+        :title="title"
+        skin="skin -skin "
+        class="layer1"
+        :area="['500px', 'auto']"
+        :anim="4"
+        :move-end="handleEnd"
+        releative-node="abc"
         @end="handleEnd"
       >
-        <h2 id="axa" style="display: inline-block; float: right" class="xxxxxx">这是2</h2>
-        <button type="" @click="visible3 = !visible3">打开关闭3</button>
+        <!-- 弹窗内容放在此处 -->
+        <div class="fW">这是弹窗内容</div>
+        <button type="" @click="visible2 = !visible2">打开关闭2</button>
         <layer-iframe
-          title="title3"
-          fixed
-          v-model="visible3"
-          :area="['200px', '200px']"
+          title="title2"
+          v-model="visible2"
+          :area="['200px', 'auto']"
+          :max-height="560"
           @end="handleEnd"
         >
-          <h2 id="axa">这是3</h2>
+          <h2 id="axa" style="display: inline-block; float: right" class="xxxxxx">
+            这是2
+          </h2>
+          <button type="" @click="visible3 = !visible3">打开关闭3</button>
+          <layer-iframe
+            title="title3"
+            v-model="visible3"
+            :area="['200px', '200px']"
+            @end="handleEnd"
+          >
+            <h2 id="axa">这是3</h2>
+          </layer-iframe>
         </layer-iframe>
       </layer-iframe>
-    </layer-iframe>
+    </div>
     <button type="" @click="openlayer">打开关闭</button>
   </div>
 </template>
@@ -48,7 +49,7 @@ export default {
       visible: false,
       visible2: false,
       visible3: false,
-      title:"title"
+      title: "title",
     };
   },
   mounted() {},
@@ -58,21 +59,37 @@ export default {
     },
     openlayer() {
       this.visible = true;
-      setTimeout(()=>{
-        this.title="false";
-      },1000)
+      setTimeout(() => {
+        this.title = "false";
+      }, 1000);
     },
   },
 };
 </script>
 
 <style>
+html {
+  background: gray;
+}
 .aaa {
   background: red;
 }
 .app {
-  width: 300px;
-  height: 300px;
+  width: 1000px;
+  height: 800px;
   position: relative;
+  background: pink;
+  /* margin: 200px auto; */
+  overflow: hidden;
+}
+#abs {
+  width: 500px;
+  height: 500px;
+  margin: 30px auto;
+  background: red;
+  /* position: relative; */
+}
+.fW {
+  height: 100px;
 }
 </style>
