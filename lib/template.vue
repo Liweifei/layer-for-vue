@@ -1,6 +1,6 @@
 <template>
-  <div class="layer-iframe" ref="lpv">
-    <slot v-if="value"></slot>
+  <div class="layer-iframe" ref="lpv" v-show="false">
+    <slot v-show="false"></slot>
   </div>
 </template>
 
@@ -143,7 +143,7 @@ export default {
         this.$nextTick(() => {
           if (val) {
             this.openlayer();
-          } else {
+          } else if(!this.alreadyDelete) {
             this.closeLayer();
           }
         });
@@ -159,6 +159,7 @@ export default {
   data() {
     return {
       layerIndex: null,
+      alreadyDelete:true,
     };
   },
   methods: {
@@ -227,13 +228,21 @@ export default {
         min,
         minStack,
       });
+      this.alreadyDelete=false;
     },
     closeLayer() {
       // layer.close(this.layerIndex);
       // console.log(this.$children);
+      // console.log(this.$refs.lpv);
+      // console.log(this.$refs.lpv);
+      // const closeBtn=document.querySelector(`#layui-layer${this.layerIndex} .layui-layer-close`)
+      // console.log(document.querySelector(`#layui-layer${this.layerIndex}`));
+      // console.log(closeBtn);
+      // closeBtn && closeBtn.click()
       layer.closeChild(this.layerIndex);
     },
-    beforeDestroy() {
+    beforeDestroy(index) {
+      this.alreadyDelete=true;
       this.$emit("input", false);
       this.$emit("end");
     },
@@ -246,6 +255,9 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.layui-layer-content .layer-iframe{
+  height: 100%;
 }
 /* .layer-iframe .layui-layer-content{
   height: 100% !important;

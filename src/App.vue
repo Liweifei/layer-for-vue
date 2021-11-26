@@ -6,10 +6,9 @@
         :title="title"
         skin="skin -skin "
         class="layer1"
-        :area="['500px', 'auto']"
+        :area="['500px', '300px']"
         :anim="4"
         :move-end="handleEnd"
-        releative-node="abc"
         @end="handleEnd"
       >
         <!-- 弹窗内容放在此处 -->
@@ -18,26 +17,28 @@
         <layer-iframe
           title="title2"
           v-model="visible2"
-          :area="['200px', 'auto']"
+          :area="['200px', '150px']"
           :max-height="560"
           @end="handleEnd"
         >
-          <h2 id="axa" style="display: inline-block; float: right" class="xxxxxx">
+          <h2 id="axa" style="display: inline-block; float: right" class="xxxxxx" @click="visible2=false">
             这是2
           </h2>
           <button type="" @click="visible3 = !visible3">打开关闭3</button>
           <layer-iframe
             title="title3"
             v-model="visible3"
-            :area="['200px', '200px']"
+            :area="['200px', '60px']"
             @end="handleEnd"
           >
             <h2 id="axa">这是3</h2>
           </layer-iframe>
         </layer-iframe>
       </layer-iframe>
+      <div class="otherBox">花木成畦手自栽花木成畦手自栽 花木成畦手自栽花木成畦手自栽 </div>
     </div>
     <button type="" @click="openlayer">打开关闭</button>
+    <button type="" @click="visible2=false">打开关闭2</button>
   </div>
 </template>
 
@@ -58,11 +59,11 @@ export default {
       console.log("end");
     },
     openlayer() {
-      this.visible = true;
+      this.visible = !this.visible ;
       setTimeout(() => {
         this.title = "false";
       }, 1000);
-    },
+    }, 
   },
 };
 </script>
@@ -80,14 +81,14 @@ html {
   position: relative;
   background: pink;
   /* margin: 200px auto; */
-  overflow: hidden;
+  overflow-x: hidden;
 }
 #abs {
   width: 500px;
   height: 500px;
   margin: 30px auto;
   background: red;
-  /* position: relative; */
+  position: relative;
 }
 .fW {
   height: 100px;
