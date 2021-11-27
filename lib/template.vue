@@ -1,6 +1,6 @@
 <template>
   <div class="layer-iframe" ref="lpv" v-show="false">
-    <slot v-show="false"></slot>
+    <slot v-if="contentVisible"></slot>
   </div>
 </template>
 
@@ -140,13 +140,14 @@ export default {
   watch: {
     value: {
       handler(val) {
-        this.$nextTick(() => {
-          if (val) {
+        this.contentVisible = val;
+        if (val) {
+          this.$nextTick(() => {
             this.openlayer();
-          } else if(!this.alreadyDelete) {
-            this.closeLayer();
-          }
-        });
+          });
+        } else if (!this.alreadyDelete) {
+          this.closeLayer();
+        }
       },
       immediate: true,
     },
@@ -159,7 +160,8 @@ export default {
   data() {
     return {
       layerIndex: null,
-      alreadyDelete:true,
+      alreadyDelete: true,
+      contentVisible: false,
     };
   },
   methods: {
@@ -213,7 +215,7 @@ export default {
         anim,
         isOutAnim: false,
         fixed,
-        resize:false,
+        resize: false,
         resizing,
         scrollbar,
         maxWidth,
@@ -228,7 +230,7 @@ export default {
         min,
         minStack,
       });
-      this.alreadyDelete=false;
+      this.alreadyDelete = false;
     },
     closeLayer() {
       // layer.close(this.layerIndex);
@@ -242,7 +244,8 @@ export default {
       layer.closeChild(this.layerIndex);
     },
     beforeDestroy(index) {
-      this.alreadyDelete=true;
+      this.alreadyDelete = true;
+      this.contentVisible = false;
       this.$emit("input", false);
       this.$emit("end");
     },
@@ -256,7 +259,7 @@ export default {
   height: 100%;
   overflow: hidden;
 }
-.layui-layer-content .layer-iframe{
+.layui-layer-content .layer-iframe {
   height: 100%;
 }
 /* .layer-iframe .layui-layer-content{

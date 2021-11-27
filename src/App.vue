@@ -6,7 +6,7 @@
         :title="title"
         skin="skin -skin "
         class="layer1"
-        :area="['500px', '300px']"
+        :area="['500px', 'auto']"
         :anim="4"
         :move-end="handleEnd"
         @end="handleEnd"
