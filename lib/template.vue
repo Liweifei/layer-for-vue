@@ -196,6 +196,7 @@ export default {
         min,
         minStack,
       } = this;
+      const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent); //safari 固定true
       this.layerIndex = layer.open({
         type: 1,
         layerIframe: true,
@@ -214,7 +215,7 @@ export default {
         id,
         anim,
         isOutAnim: false,
-        fixed,
+        fixed: isSafari || fixed,
         resize: false,
         resizing,
         scrollbar,
