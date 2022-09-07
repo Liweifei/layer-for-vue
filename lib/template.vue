@@ -253,12 +253,7 @@ export default {
       this.$emit("input", false);
       this.$emit("end");
     },
-  },
-  
-  created(){
-      console.log(this.shadeNotClosed);
-      console.log(this.shadeNotClosed);
-    }
+  }
 };
 </script>
 <style scoped>
