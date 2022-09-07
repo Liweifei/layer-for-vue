@@ -195,6 +195,8 @@ export default {
         full,
         min,
         minStack,
+        shadeNotClosed,
+        allFixed
       } = this;
       const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent); //safari 固定true
       this.layerIndex = layer.open({
@@ -215,7 +217,7 @@ export default {
         id,
         anim,
         isOutAnim: false,
-        fixed: isSafari || fixed,
+        fixed: isSafari || allFixed || fixed,
         resize: false,
         resizing,
         scrollbar,
@@ -230,6 +232,7 @@ export default {
         full,
         min,
         minStack,
+        shadeNotClosed
       });
       this.alreadyDelete = false;
     },
@@ -251,6 +254,11 @@ export default {
       this.$emit("end");
     },
   },
+  
+  created(){
+      console.log(this.shadeNotClosed);
+      console.log(this.shadeNotClosed);
+    }
 };
 </script>
 <style scoped>

@@ -6,6 +6,10 @@ import App from './App.vue'
 
 import lpv from "../lib/index";
 Vue.use(lpv)
+// Vue.use(lpv,{
+//   shadeNotClosed:true,
+//   allFixed:true
+// })
 
 
 new Vue({
