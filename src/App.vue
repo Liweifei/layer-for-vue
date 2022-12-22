@@ -47,8 +47,20 @@
         花木成畦手自栽花木成畦手自栽 花木成畦手自栽花木成畦手自栽
       </div>
     </div>
+    <layer-iframe
+      v-model="visibleAsync"
+      title="异步弹窗"
+      :area="['500px', 'auto']"
+      top-center
+      :maxWidth="100"
+      @end="syncList=[]"
+    >
+      <div class="main"></div>
+      <h2 v-for="(item, index) in syncList" :key="index">{{ index }}</h2>
+    </layer-iframe>
     <button type="" @click="openlayer">打开关闭</button>
-    <button type="" @click="visible2 = false">打开关闭2</button>
+    <button type="" @click="visible2 = false">关闭2</button>
+    <button type="" @click="showAsync">打开异步弹窗</button>
   </div>
 </template>
 
@@ -60,6 +72,8 @@ export default {
       visible: false,
       visible2: false,
       visible3: false,
+      visibleAsync: false,
+      syncList: [],
       title: "title",
     };
   },
@@ -73,6 +87,13 @@ export default {
       setTimeout(() => {
         this.title = "false";
       }, 1000);
+    },
+    showAsync() {
+      this.visibleAsync = true;
+      const it=setInterval(() => {
+        this.syncList.push(1);
+        this.syncList.length>2 && clearInterval(it)
+      },100);
     },
   },
 };
@@ -106,5 +127,8 @@ html {
 }
 .fW {
   height: 800px;
+}
+.main {
+  height: 300px;
 }
 </style>

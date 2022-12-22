@@ -30,7 +30,7 @@ export default {
     area: {
       type: String | Array,
       default: () => {
-        return ["1000px", "100%"];
+        return ["1000px", "96%"];
       },
     },
     offset: {
@@ -46,6 +46,11 @@ export default {
       default: () => {
         return [0.3, "#000"];
       },
+    },
+    topCenter: {
+      //不使用自定义的初始定位top,top居中
+      type: Boolean,
+      default: false, //change
     },
     shadeClose: {
       type: Boolean,
@@ -132,10 +137,10 @@ export default {
       type: Function,
       default: null,
     },
-    minStack: {
-      type: Boolean,
-      default: true,
-    },
+    // minStack: {
+    //   type: Boolean,
+    //   default: true,
+    // },
   },
   watch: {
     value: {
@@ -162,8 +167,11 @@ export default {
       layerIndex: null,
       alreadyDelete: true,
       contentVisible: false,
+      autoMaxHeight: "96%",
+      startPosTop: "2%", //16
     };
   },
+  created() {},
   methods: {
     openlayer() {
       const {
@@ -171,6 +179,11 @@ export default {
         releativeNode,
         skin,
         area,
+        autoMaxHeight,
+        allMaxHeight,
+        startPosTop,
+        allStartTop,
+        topCenter,
         offset,
         closeBtn,
         shade,
@@ -194,11 +207,12 @@ export default {
         cancel,
         full,
         min,
-        minStack,
+        // minStack,
         shadeNotClosed,
-        allFixed
+        allFixed,
       } = this;
-      const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent); //safari 固定true
+      const isSafari =
+        /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent); //safari 固定true
       this.layerIndex = layer.open({
         type: 1,
         layerIframe: true,
@@ -208,6 +222,9 @@ export default {
         title,
         skin,
         area,
+        autoMaxHeight: typeof allMaxHeight != "undefined" ? allMaxHeight : autoMaxHeight,
+        startPosTop: typeof allStartTop != "undefined" ? allStartTop : startPosTop,
+        topCenter,
         offset,
         closeBtn,
         shade,
@@ -231,8 +248,8 @@ export default {
         cancel,
         full,
         min,
-        minStack,
-        shadeNotClosed
+        // minStack,
+        shadeNotClosed,
       });
       this.alreadyDelete = false;
     },
@@ -253,7 +270,7 @@ export default {
       this.$emit("input", false);
       this.$emit("end");
     },
-  }
+  },
 };
 </script>
 <style scoped>
@@ -265,6 +282,9 @@ export default {
 }
 .layui-layer-content .layer-iframe {
   height: 100%;
+}
+::v-deep.layui-layer-page {
+  max-height: 100%;
 }
 /* .layer-iframe .layui-layer-content{
   height: 100% !important;
