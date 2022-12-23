@@ -278,20 +278,9 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
-.layui-layer-content .layer-iframe {
-  height: 100%;
-}
-::v-deep.layui-layer-page {
-  max-height: 100%;
-}
-/* .layer-iframe .layui-layer-content{
-  height: 100% !important;
-} */
-/* .layui-layer .layer-iframe{
-  position: absolute;
-  width: 100%;
+/* .layui-layer-content .layer-iframe {
   height: 100%;
 } */
 </style>

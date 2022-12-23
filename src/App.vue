@@ -52,7 +52,6 @@
       title="异步弹窗"
       :area="['500px', 'auto']"
       top-center
-      :maxWidth="100"
       @end="syncList=[]"
     >
       <div class="main"></div>
@@ -92,7 +91,7 @@ export default {
       this.visibleAsync = true;
       const it=setInterval(() => {
         this.syncList.push(1);
-        this.syncList.length>2 && clearInterval(it)
+        this.syncList.length>10 && clearInterval(it)
       },100);
     },
   },
