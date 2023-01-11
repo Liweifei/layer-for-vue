@@ -1,7 +1,7 @@
 {
   "name": "layer-for-vue",
   "description": "基于 vue 版本版的 layer,提供基于 vue 的核心弹窗功能",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": "Liweifei <1195669615@qq.com>",
   "license": "MIT",
   "private": false,
@@ -15,6 +15,9 @@
     "layer-src": "^3.5.1",
     "vue": "^2.5.11"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Liweifei/layer-for-vue.git"
