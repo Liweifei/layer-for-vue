@@ -99,15 +99,17 @@ export default {
 </script>
 
 <style>
-html {
+html,body {
   background: gray;
+  height: 100%;
 }
 .aaa {
   background: red;
 }
 .app {
   width: 1000px;
-  height: 800px;
+  /* height: 800px; */
+  height: 100%;
   position: relative;
   background: pink;
   /* margin: 200px auto; */
