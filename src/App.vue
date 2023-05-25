@@ -10,6 +10,7 @@
         :anim="4"
         :move-end="handleEnd"
         @end="handleEnd"
+        fixed
       >
         <!-- 弹窗内容放在此处 -->
         <div class="aab">
