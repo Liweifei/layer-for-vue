@@ -6,7 +6,19 @@ import App from './App.vue'
 
 import lpv from "../lib/index";
 
-Vue.use(lpv)
+Vue.use(lpv,{
+  watermark:true,
+  markInfo:{
+    content:[
+      {
+        text: 'userName',
+        style:{
+          color:"red"
+        }
+      },
+    ]
+  }
+})
 // Vue.use(lpv,{
 //   shadeNotClosed: true, //是否在缩小弹窗时不关闭遮罩，默认false
 //   allFixed: true, //是否在全局强制开启弹窗css属性positon为fixed，默认false

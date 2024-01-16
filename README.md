@@ -1,6 +1,6 @@
 # 基于 vue 版本版的 layer,提供基于 vue 的核心弹窗功能
 
-## layer-for-vue(当前版本 V1.2.0)
+## layer-for-vue(当前版本 V1.2.1)
 
 ## layer 版本(3.5.1)
 
@@ -13,6 +13,17 @@ Vue2.x
 ```javascript
 // 可开户配置如下
 const param = {
+  watermark: true, //是否支持水印功能（参考1.0.3版本的水印插件vue-watermark-v2）
+  markInfo:{//（同vue-watermark-v2的props）
+    content:[
+      {
+        text: "userName",
+        style:{
+          color:"red"
+        }
+      },
+    ]
+  },
   shadeNotClosed: true, //是否在缩小弹窗时不关闭遮罩，默认false
   allFixed: true, //是否在全局强制开启弹窗css属性positon为fixed，默认false
   allMaxHeight: "100%", //全局配置高度自适应时弹窗的最大高度（默认96%，可以是Number）
@@ -34,7 +45,9 @@ resize
 
 	//main.js
 	import lfv from "layer-for-vue";
+  // import { updateMarkInfo } from "layer-for-vue";//主要用于手动更新水印数据，开启watermark后可用
 	Vue.use(lfv)
+
 
 	（1）其它layer方法同当前版本一致
 

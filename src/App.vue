@@ -25,6 +25,8 @@
           releative-node="abs"
           @end="handleEnd"
         >
+        <button @click="updateMark('2222更新水印信息')">更新水印信息2222</button>
+
           <h2
             id="axa"
             style="display: inline-block; float: right"
@@ -53,7 +55,7 @@
       title="异步弹窗"
       :area="['500px', 'auto']"
       top-center
-      @end="syncList=[]"
+      @end="syncList = []"
     >
       <div class="main"></div>
       <h2 v-for="(item, index) in syncList" :key="index">{{ index }}</h2>
@@ -61,10 +63,12 @@
     <button type="" @click="openlayer">打开关闭</button>
     <button type="" @click="visible2 = false">关闭2</button>
     <button type="" @click="showAsync">打开异步弹窗</button>
+    <button @click="updateMark('更新水印信息')">更新水印信息</button>
   </div>
 </template>
 
 <script>
+import { updateMarkInfo } from "../lib/index";
 export default {
   name: "app",
   data() {
@@ -82,6 +86,15 @@ export default {
     handleEnd() {
       console.log("end");
     },
+    updateMark(text) {
+      updateMarkInfo({
+        content: [
+          {
+            text,
+          },
+        ],
+      });
+    },
     openlayer() {
       this.visible = !this.visible;
       setTimeout(() => {
@@ -90,17 +103,18 @@ export default {
     },
     showAsync() {
       this.visibleAsync = true;
-      const it=setInterval(() => {
+      const it = setInterval(() => {
         this.syncList.push(1);
-        this.syncList.length>10 && clearInterval(it)
-      },100);
+        this.syncList.length > 10 && clearInterval(it);
+      }, 100);
     },
   },
 };
 </script>
 
 <style>
-html,body {
+html,
+body {
   background: gray;
   height: 100%;
 }

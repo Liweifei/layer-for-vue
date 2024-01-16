@@ -1,10 +1,14 @@
 <template>
   <div class="layer-iframe" ref="lpv" v-show="false">
+    <vue-watermark-v2 v-if="watermark" v-bind="markInfo"></vue-watermark-v2>
+    {{ watermark }}
     <slot v-if="contentVisible"></slot>
   </div>
 </template>
 
 <script>
+import refreshEvent from "./watermarkUpdateList";
+
 // 阉割的配置属性
 // isOutAnim: false,
 // resize:false,
@@ -164,14 +168,20 @@ export default {
   },
   data() {
     return {
+      // componentId: `LPV${Math.random().toString().replace(".", "")}`,
       layerIndex: null,
       alreadyDelete: true,
       contentVisible: false,
       autoMaxHeight: "96%",
       startPosTop: "2%", //16
+      // watermark:false,
     };
   },
-  created() {},
+  created() {
+    if (this.watermark) {
+      refreshEvent.push(this);
+    }
+  },
   methods: {
     openlayer() {
       const {
@@ -212,18 +222,21 @@ export default {
         allFixed,
       } = this;
       const isSafari =
-        /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent); //safari 固定true
+        /Safari/.test(navigator.userAgent) &&
+        !/Chrome/.test(navigator.userAgent); //safari 固定true
       this.layerIndex = layer.open({
         type: 1,
         layerIframe: true,
         releativeNode, //lwf 弹窗浮动基于哪个dom（此处为id）
         content: $(this.$refs.lpv),
-        end: this.beforeDestroy,
+        end: this.autoDestroy,
         title,
         skin,
         area,
-        autoMaxHeight: typeof allMaxHeight != "undefined" ? allMaxHeight : autoMaxHeight,
-        startPosTop: typeof allStartTop != "undefined" ? allStartTop : startPosTop,
+        autoMaxHeight:
+          typeof allMaxHeight != "undefined" ? allMaxHeight : autoMaxHeight,
+        startPosTop:
+          typeof allStartTop != "undefined" ? allStartTop : startPosTop,
         topCenter,
         offset,
         closeBtn,
@@ -264,12 +277,21 @@ export default {
       // closeBtn && closeBtn.click()
       layer.closeChild(this.layerIndex);
     },
-    beforeDestroy(index) {
+    autoDestroy(index) {
       this.alreadyDelete = true;
       this.contentVisible = false;
       this.$emit("input", false);
       this.$emit("end");
     },
+  },
+  beforeDestroy() {
+    refreshEvent.forEach((self, index) => {
+      if (self === this) {
+        refreshEvent.splice(index, 1);
+        // console.log("self destory",refreshEvent);
+        return;
+      }
+    });
   },
 };
 </script>
