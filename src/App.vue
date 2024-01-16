@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { updateMarkInfo } from "../lib/index";
+import { updateWaterMark } from "../lib/main";
 export default {
   name: "app",
   data() {
@@ -87,7 +87,7 @@ export default {
       console.log("end");
     },
     updateMark(text) {
-      updateMarkInfo({
+      updateWaterMark({
         content: [
           {
             text,

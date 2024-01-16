@@ -1,6 +1,6 @@
 # 基于 vue 版本版的 layer,提供基于 vue 的核心弹窗功能
 
-## layer-for-vue(当前版本 V1.2.1)
+## layer-for-vue(当前版本 V1.2.2)
 
 ## layer 版本(3.5.1)
 
@@ -45,7 +45,7 @@ resize
 
 	//main.js
 	import lfv from "layer-for-vue";
-  // import { updateMarkInfo } from "layer-for-vue";//主要用于手动更新水印数据，开启watermark后可用
+  // import { updateWaterMark } from "layer-for-vue";//主要用于手动更新水印数据，开启watermark后可用
 	Vue.use(lfv)
 
 
