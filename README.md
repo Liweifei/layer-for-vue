@@ -13,7 +13,7 @@ Vue2.x
 ```javascript
 // 可开户配置如下
 const param = {
-  watermark: true, //是否支持水印功能（参考1.0.3版本的水印插件vue-watermark-v2）
+  watermark: true, //是否支持水印功能（参考1.0.4版本的水印插件vue-watermark-v2）
   markInfo:{//（同vue-watermark-v2的props）
     content:[
       {

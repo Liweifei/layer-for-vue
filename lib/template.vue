@@ -1,6 +1,6 @@
 <template>
   <div class="layer-iframe" ref="lpv" v-show="false">
-    <vue-watermark-v2 v-if="watermark" v-bind="markInfo"></vue-watermark-v2>
+    <layer-vue-watermark v-if="watermark" v-bind="markInfo"></layer-vue-watermark>
     <slot v-if="contentVisible"></slot>
   </div>
 </template>
