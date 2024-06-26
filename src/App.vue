@@ -9,6 +9,7 @@
         :area="['500px', 'auto']"
         :anim="4"
         :move-end="handleEnd"
+        :restore="restore"
         @end="handleEnd"
         fixed
       >
@@ -85,6 +86,9 @@ export default {
   methods: {
     handleEnd() {
       console.log("end");
+    },
+    restore() {
+      console.log("restore");
     },
     updateMark(text) {
       updateWaterMark({
